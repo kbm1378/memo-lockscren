@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.byungmook.memolock.R;
 import com.example.byungmook.memolock.model.Todo;
 
 import io.realm.OrderedRealmCollection;
@@ -25,9 +26,9 @@ public class TodoListAdapter extends RealmBaseAdapter<Todo>{
         ViewHolder viewHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(parent.getContext())
-                    .inflate(android.R.layout.simple_list_item_1, parent, false);
+                    .inflate(R.layout.todo_list_item, parent, false);
             viewHolder = new ViewHolder();
-            viewHolder.text = convertView.findViewById(android.R.id.text1);
+            viewHolder.text = convertView.findViewById(R.id.todoItemTextView);
             convertView.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) convertView.getTag();

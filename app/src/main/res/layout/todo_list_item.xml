@@ -27,12 +27,12 @@
         android:layout_marginLeft="1dp"
         android:layout_marginStart="1dp"
         android:text="완료"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/todoItemEditButton"
         app:layout_constraintStart_toEndOf="@+id/todoItemTextView"
         tools:layout_editor_absoluteY="16dp" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/todoItemEditButton"
         android:layout_width="54dp"
         android:layout_height="45dp"
         android:layout_marginEnd="2dp"
@@ -52,6 +52,6 @@
         android:layout_marginStart="1dp"
         android:text="삭제"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/button"
+        app:layout_constraintStart_toEndOf="@+id/todoItemEditButton"
         tools:layout_editor_absoluteY="16dp" />
 </android.support.constraint.ConstraintLayout>

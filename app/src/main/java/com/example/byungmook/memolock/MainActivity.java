@@ -1,8 +1,11 @@
 package com.example.byungmook.memolock;
 
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
@@ -37,12 +40,18 @@ public class MainActivity extends AppCompatActivity {
                 .deleteRealmIfMigrationNeeded()
                 .build();
         mRealm = Realm.getInstance(config);
-        //Log.d("Realm", mRealm.getPath());
+        Log.d("Realm", mRealm.getPath());
         RealmResults<Todo> todoResults = mRealm.where(Todo.class).findAllAsync();
 
-        ListAdapter adapter = new TodoListAdapter(todoResults);
+        ListAdapter adapter = new TodoListAdapter(todoResults, mRealm);
         ListView listView = (ListView) findViewById(R.id.todoListView);
         listView.setAdapter(adapter);
+
+
+
+
+
+
     }
 
     public void addTodoClick(View v) {
@@ -50,7 +59,14 @@ public class MainActivity extends AppCompatActivity {
 
 
         mRealm.beginTransaction();
-        Todo mTodo = mRealm.createObject(Todo.class);
+        Number currentIdNum = mRealm.where(Todo.class).max("id");
+        int nextId;
+        if(currentIdNum == null) {
+            nextId = 1;
+        } else {
+            nextId = currentIdNum.intValue() + 1;
+        }
+        Todo mTodo = mRealm.createObject(Todo.class, nextId);
         mTodo.setTodo(todoText);
         mRealm.commitTransaction();
 
